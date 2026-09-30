@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet">
+<title>BCP策定の進め方</title>
+<style>
+:root{
+  --navy:#1f3a5f; --navy2:#2d4f7c; --accent:#b5563a; --ink:#222; --sub:#555; --line:#c9ced6; --hair:#e3e6ea;
+  --pale:#f4f6f9; --paleA:#fbf3ef; --cream:#faf8f3;
+}
+@page{ size:A4; margin:16mm 15mm 16mm 15mm;
+  @bottom-center{ content: counter(page); font-size:8pt; color:#888; font-family:"Yu Gothic","Meiryo",sans-serif; }
+  @bottom-right{ content:"土橋社労士事務所"; font-size:7pt; color:#aaa; font-family:"Yu Gothic","Meiryo",sans-serif; }
+}
+@page cover{ @bottom-center{content:none} @bottom-right{content:none} }
+*{box-sizing:border-box}
+html,body{background:#fff}
+body{font-family:"Yu Gothic","YuGothic","Meiryo",sans-serif; font-weight:500; color:var(--ink); font-size:9.6pt; line-height:1.75; margin:0;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+h1,h2,h3,h4{font-weight:700; color:var(--navy); margin:0}
+p{margin:0 0 .6em}
+ul,ol{margin:.2em 0 .7em; padding-left:1.4em}
+li{margin:.12em 0}
+strong{color:#111}
+.em{color:var(--accent); font-weight:700}
+.small{font-size:8.4pt; color:var(--sub)}
+.page{break-before:page}
+
+/* cover */
+.cover{page:cover; height:265mm; position:relative; padding:28mm 10mm 0}
+.cover .to{font-size:13pt; color:var(--ink); border-bottom:1px solid var(--line); display:inline-block; padding-bottom:3px}
+.cover .kicker{margin-top:48mm; font-size:10pt; letter-spacing:.2em; color:var(--accent); font-weight:700}
+.cover h1{font-size:27pt; line-height:1.35; margin-top:6px; letter-spacing:.02em}
+.cover .subt{font-size:12.5pt; color:var(--navy2); margin-top:10px}
+.cover .bar{width:60px; height:3px; background:var(--accent); margin:22px 0}
+.cover .lead{font-size:10pt; color:var(--sub); max-width:140mm}
+.cover .foot{position:absolute; left:10mm; right:10mm; bottom:14mm; display:flex; justify-content:space-between; align-items:flex-end; border-top:1px solid var(--line); padding-top:10px}
+.cover .foot .date{font-size:10pt}
+.cover .foot .by{font-size:13pt; font-weight:700; color:var(--navy)}
+.cover .conf{position:absolute; right:10mm; top:28mm; font-size:8.5pt; border:1px solid var(--accent); color:var(--accent); padding:2px 10px}
+
+/* headings */
+.chap{border-bottom:2px solid var(--navy); padding-bottom:6px; margin:0 0 14px; display:flex; align-items:baseline; gap:12px}
+.chap .no{font-size:10pt; color:var(--accent); font-weight:700; letter-spacing:.12em}
+.chap h2{font-size:17pt}
+h3{font-size:12pt; margin:16px 0 7px; padding-left:9px; border-left:3px solid var(--accent); line-height:1.4; break-after:avoid}
+h4{font-size:10.2pt; margin:11px 0 4px; break-after:avoid}
+
+/* boxes */
+.box{border:1px solid var(--line); padding:9px 13px; margin:8px 0 12px; break-inside:avoid; background:#fff}
+.box.pale{background:var(--pale); border-color:var(--hair)}
+.box.acc{background:var(--paleA); border-color:#ecd3c8}
+.box .bt{font-weight:700; color:var(--navy); margin-bottom:3px}
+.box.acc .bt{color:var(--accent)}
+.point{border-left:3px solid var(--accent); background:var(--paleA); padding:7px 12px; margin:8px 0 12px; break-inside:avoid}
+.point b{color:var(--accent)}
+
+/* tables */
+table{width:100%; border-collapse:collapse; margin:6px 0 12px; font-size:8.9pt; line-height:1.6}
+th,td{border:1px solid var(--line); padding:4px 7px; vertical-align:top; text-align:left}
+th{background:var(--navy); color:#fff; font-weight:700}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+td.h{background:var(--pale); font-weight:700; color:var(--navy); white-space:nowrap}
+td.c,th.c{text-align:center}
+.fill{color:#bbb}
+table.form td{height:22px}
+table.form td.q{width:44%}
+
+/* flow */
+.flow{display:flex; gap:0; margin:10px 0 14px; align-items:stretch; break-inside:avoid}
+.flow .st{flex:1; border:1px solid var(--navy); padding:7px 6px; text-align:center; background:#fff; position:relative; font-size:8.8pt; line-height:1.45}
+.flow .st b{display:block; color:var(--navy); font-size:9.6pt; margin-bottom:2px}
+.flow .st.hl{background:var(--navy); color:#fff}
+.flow .st.hl b{color:#fff}
+.flow .ar{width:14px; display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:700}
+
+/* grid */
+.g3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:8px 0 12px}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:8px 0 12px}
+.card{border:1px solid var(--line); border-top:3px solid var(--navy); padding:8px 11px; break-inside:avoid; background:#fff}
+.card .ct{font-weight:700; color:var(--navy); font-size:10.5pt; margin-bottom:3px}
+.card.a{border-top-color:var(--accent)}
+.card.a .ct{color:var(--accent)}
+
+/* impact diagram */
+.imp{display:grid; grid-template-columns:34mm 1fr; gap:0; margin:8px 0 12px; break-inside:avoid}
+.imp .src{background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:700; padding:8px; font-size:10pt}
+.imp .rows{border:1px solid var(--line); border-left:none}
+.imp .row{display:grid; grid-template-columns:40mm 1fr; border-bottom:1px solid var(--hair)}
+.imp .row:last-child{border-bottom:none}
+.imp .row .k{padding:7px 9px; font-weight:700; color:var(--navy); background:var(--pale)}
+.imp .row .v{padding:7px 10px}
+
+/* org */
+.org{margin:10px 0 12px; break-inside:avoid; text-align:center}
+.org .top{display:inline-block; background:var(--navy); color:#fff; padding:6px 22px; font-weight:700}
+.org .mid{display:inline-block; border:1px solid var(--navy); padding:4px 18px; margin-top:6px; font-weight:700; color:var(--navy); background:#fff}
+.org .vline{width:1px; height:10px; background:var(--navy); margin:0 auto}
+.org .teams{display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin-top:0; border-top:1px solid var(--navy); padding-top:10px}
+.org .t{border:1px solid var(--line); border-top:3px solid var(--accent); padding:5px 4px; font-size:8.4pt; line-height:1.4; background:#fff}
+.org .t b{display:block; color:var(--navy); font-size:8.9pt}
+
+/* gantt */
+table.gantt{font-size:8.2pt}
+table.gantt th{text-align:center; padding:3px 2px}
+table.gantt td{padding:3px 4px}
+table.gantt td.b{background:var(--navy2)}
+table.gantt td.b2{background:#8fa6c4}
+table.gantt td.m{background:var(--accent); color:#fff; text-align:center; font-weight:700}
+table.gantt td.n{width:26%}
+
+.toc{columns:2; column-gap:12mm; font-size:10pt; line-height:2}
+.toc div{break-inside:avoid}
+.toc .n{color:var(--accent); font-weight:700; display:inline-block; width:3.2em}
+.sum-h{font-size:10.5pt; font-weight:700; color:var(--navy); margin:10px 0 4px}
+.chk{list-style:none; padding-left:0}
+.chk li{padding-left:1.5em; position:relative}
+.chk li::before{content:"□"; position:absolute; left:0; color:var(--navy)}
+.tag{display:inline-block; font-size:7.8pt; border:1px solid var(--accent); color:var(--accent); padding:0 6px; margin-right:4px; line-height:1.5; vertical-align:1px}
+.tag.n{border-color:var(--navy); color:var(--navy)}
+.stepbox{border:1px solid var(--line); margin:10px 0 14px; break-inside:auto}
+.stepbox .sh{background:var(--navy); color:#fff; padding:6px 12px; display:flex; gap:12px; align-items:baseline; break-after:avoid}
+.stepbox .sh .sn{font-weight:700; color:#f3c6b5; font-size:9pt; letter-spacing:.1em}
+.stepbox .sh .stt{font-weight:700; font-size:11.5pt}
+.stepbox .sh .sp{margin-left:auto; font-size:8.5pt; opacity:.9}
+.stepbox .sb{padding:8px 13px 4px}
+.stepbox .dec{background:var(--paleA); border-left:3px solid var(--accent); padding:6px 11px; margin:6px 0 8px; break-inside:avoid}
+.stepbox .dec b{color:var(--accent)}
+.endnote{margin-top:18px; border-top:1px solid var(--line); padding-top:10px; font-size:8.6pt; color:var(--sub)}
+
+/* ===== screen display ===== */
+@media screen{
+  html,body{background:#e8eaee}
+  body{font-size:14.5px}
+  table{font-size:13px}
+  body>section{background:#fff; max-width:210mm; margin:24px auto; padding:16mm 15mm; box-shadow:0 1px 5px rgba(0,0,0,.12); position:relative}
+  body>section.cover{height:auto; min-height:265mm; padding:28mm 15mm 40mm}
+  .cover .conf{right:15mm}
+  .cover .foot{left:15mm; right:15mm}
+}
+@media screen and (max-width:820px){
+  body>section{margin:0 0 10px; padding:24px 16px; box-shadow:none}
+  body>section.cover{min-height:auto; padding:28px 16px 100px}
+  .cover .conf{position:static; display:table; margin-bottom:18px}
+  .flow .st{padding:5px 6px}
+  .cover .kicker{margin-top:36px}
+  .cover h1{font-size:23pt}
+  .cover .foot{left:16px; right:16px}
+  .chap{flex-wrap:wrap; gap:4px 10px}
+  .chap h2{font-size:15pt}
+  .toc{columns:1}
+  .g3,.g2{grid-template-columns:1fr}
+  .flow{flex-direction:column}
+  .flow .ar{width:auto; height:16px; transform:rotate(90deg)}
+  .imp{grid-template-columns:1fr}
+  .imp .rows{border-left:1px solid var(--line)}
+  .imp .row{grid-template-columns:1fr}
+  .org .teams{grid-template-columns:repeat(2,1fr)}
+  .stepbox .sh{flex-wrap:wrap; gap:2px 10px}
+  .stepbox .sh .sp{margin-left:0}
+  table.gantt, table:has(th:nth-child(5)){display:block; overflow-x:auto}
+  table.gantt{min-width:0}
+  td.h{white-space:normal}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 表紙 ============ -->
+<section class="cover">
+  <div class="conf">取扱い：貴社 経営層・策定メンバー限り</div>
+  <div class="to">株式会社システムオリジン　御中</div>
+  <div class="kicker">BUSINESS CONTINUITY PLAN</div>
+  <h1>事業継続計画（BCP）<br>策定の進め方</h1>
+  <div class="subt">― 策定プロジェクト手順書・ヒアリング項目 ―</div>
+  <div class="bar"></div>
+  <p class="lead">本資料は、貴社がBCPを策定するにあたり「何を、誰が、どの順番で、どのくらいの期間をかけて決めていくか」をまとめた進め方の資料です。BCP本体ではなく、策定プロジェクトを始めるためのたたき台としてご活用ください。</p>
+  <div class="foot">
+    <div class="date">2026年9月30日</div>
+    <div class="by">土橋社労士事務所</div>
+  </div>
+</section>
+
+<!-- ============ 目次 ============ -->
+<section class="page">
+  <div class="chap"><span class="no">CONTENTS</span><h2>目次</h2></div>
+  <div class="toc">
+    <div><span class="n">00</span>1枚でわかる全体像</div>
+    <div><span class="n">01</span>BCPとは ― 事業を続けるための経営計画</div>
+    <div><span class="n">02</span>BCPの中核 ― 起きること・予防・代替・復旧・時間・チーム</div>
+    <div><span class="n">03</span>体制 ― 平時の策定チームと発生時の対策本部</div>
+    <div><span class="n">04</span>策定の全体フロー（STEP0〜8）</div>
+    <div><span class="n">05</span>スケジュール（12か月）</div>
+    <div><span class="n">06</span>各STEPの詳しい手順</div>
+    <div><span class="n">07</span>人・労務面のポイント</div>
+    <div><span class="n">08</span>ヒアリング項目</div>
+    <div><span class="n">09</span>付録（BCP本体の目次案・チェックリスト・用語集）</div>
+  </div>
+
+  <h3>本資料の使い方</h3>
+  <ul>
+    <li><strong>経営層の方</strong>：まず「00 全体像」と「01 BCPとは」をお読みください。BCPで何を守り、何を決めるのかがわかります。</li>
+    <li><strong>策定事務局の方</strong>：「04〜06」が進め方の手順です。各STEPの「ここで決めること」を順に埋めていけば、BCPの骨格ができあがります。</li>
+    <li><strong>各部門の代表の方</strong>：「02 BCPの中核」と「08 ヒアリング項目」をご確認ください。ヒアリングでお聞きする内容を事前に把握いただけます。</li>
+  </ul>
+  <div class="box pale">
+    <div class="bt">ご留意いただきたいこと</div>
+    <ul style="margin-bottom:0">
+      <li>本資料中の「記入例」「例」は、考え方を示すための例です。実際の目標時間・対策・担当は、ヒアリングと検討を経て貴社で決定してください。</li>
+      <li>数値や拠点ごとの人数などは空欄にしています。策定の過程で埋めていく想定です。</li>
+      <li>当事務所は、策定プロジェクトの進行支援と、人・労務面（安否確認、勤務・賃金の取扱い、規程整備など）を担当します。システムの技術的な復旧手順は、貴社の技術部門（必要に応じて外部のIT専門家）が作成する前提です。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 00 全体像 ============ -->
+<section class="page">
+  <div class="chap"><span class="no">00</span><h2>1枚でわかる全体像</h2></div>
+
+  <div class="sum-h">BCPとは</div>
+  <p>災害・システム障害・感染症・サイバー攻撃などが起きても、<strong>中核の事業を止めない、止まっても決めた時間内に戻す</strong>ための<strong>経営計画</strong>です。</p>
+
+  <div class="sum-h">BCPで守る3つのもの</div>
+  <div class="g3">
+    <div class="card a"><div class="ct">① 社員</div>命と安全、生活と雇用。「いざという時どうすればよいか」がわかり、安心して働ける状態をつくります。</div>
+    <div class="card"><div class="ct">② 顧客</div>タクシー会社の配車業務と事務処理。その先にいる乗務員とタクシー利用者の移動も守ります。</div>
+    <div class="card"><div class="ct">③ 会社</div>取引先からの信用と経営の継続。</div>
+  </div>
+
+  <div class="sum-h">BCPの中核（6つの要素）</div>
+  <div class="flow">
+    <div class="st"><b>起きること</b>想定する事象</div><div class="ar">▶</div>
+    <div class="st"><b>予防</b>起きにくく<br>被害を小さく</div><div class="ar">▶</div>
+    <div class="st hl"><b>初動・代替</b>止まっている間<br>どうするか</div><div class="ar">▶</div>
+    <div class="st hl"><b>復旧</b>どう戻すか</div><div class="ar">▶</div>
+    <div class="st"><b>時間</b>何時間で・どこまで<br>戻すか</div><div class="ar">▶</div>
+    <div class="st"><b>チーム</b>誰が動くか</div>
+  </div>
+
+  <div class="sum-h">貴社で特に重要な3つの対象</div>
+  <table>
+    <tr><th style="width:26%">対象</th><th>止まったときの影響</th></tr>
+    <tr><td class="h">テレハイ（配車システム）</td><td>タクシー会社が配車できなくなり、利用者の移動手段がなくなる</td></tr>
+    <tr><td class="h">タクコン（事務処理システム）</td><td>点呼（遠隔点呼・点呼番を含む）・運行管理・売上管理・給与計算など、タクシー会社の事務処理全体が止まる</td></tr>
+    <tr><td class="h">配車代行センター（静岡市）</td><td>受託している顧客の配車業務そのものが止まる</td></tr>
+  </table>
+
+  <div class="sum-h">進め方と文書</div>
+  <div class="g2">
+    <div class="box pale" style="margin:0"><div class="bt">12か月・9ステップで策定</div>月1回の定例会と、各部門・各拠点へのヒアリングで進めます。<span class="em">3か月目には「安否確認と初動ルール」の暫定版を先に運用</span>し、策定の途中でも使える状態をつくります。</div>
+    <div class="box pale" style="margin:0"><div class="bt">文書は2つに分ける</div><strong>経営版（社外秘）</strong>：優先順位・システムの弱点・復旧手順・投資計画<br><strong>全社版（全社員に周知）</strong>：基本方針・初動の行動・安否確認・連絡網・各自の役割</div>
+  </div>
+</section>
+
+<!-- ============ 01 BCPとは ============ -->
+<section class="page">
+  <div class="chap"><span class="no">01</span><h2>BCPとは ― 事業を続けるための経営計画</h2></div>
+
+  <h3>1-1　BCPの目的</h3>
+  <p>BCP（Business Continuity Plan：事業継続計画）とは、緊急事態が起きたときに、<strong>中核となる事業を継続する、または早期に復旧する</strong>ために、平時に行っておく準備と、緊急時の行動を決めておく計画です。</p>
+  <p>よく混同される「防災計画」とは、次のように目的が異なります。</p>
+  <table>
+    <tr><th style="width:18%"></th><th>防災計画</th><th>BCP（事業継続計画）</th></tr>
+    <tr><td class="h">主な目的</td><td>人命の安全確保、建物・設備の被害を減らす</td><td>人命の安全確保に加え、<strong>事業を止めない・早く戻す</strong></td></tr>
+    <tr><td class="h">対象</td><td>主に自然災害</td><td>自然災害、システム障害、サイバー攻撃、感染症など<strong>事業を止めるすべての事象</strong></td></tr>
+    <tr><td class="h">考える範囲</td><td>自社の拠点内</td><td>自社に加え、<strong>顧客・委託先・仕入先</strong>とのつながり</td></tr>
+    <tr><td class="h">位置づけ</td><td>総務・施設管理の計画</td><td><strong>経営計画</strong>（何を優先し、何に投資するかを経営者が決める）</td></tr>
+  </table>
+
+  <h3>1-2　BCPで守る3つのもの</h3>
+  <p>BCPは「取引先からの信頼」のためだけのものではありません。貴社のBCPでは、次の3つを守る対象として位置づけます。</p>
+  <table>
+    <tr><th style="width:16%">守るもの</th><th>具体的な内容</th></tr>
+    <tr><td class="h">① 社員</td><td>命と安全、家族の安全確認、生活（給与）と雇用。緊急時の行動が決まっていることによる安心感。</td></tr>
+    <tr><td class="h">② 顧客</td><td>タクシー会社の配車業務と事務処理。その先にいる乗務員の給与支払や、高齢者・通院者などタクシー利用者の移動。</td></tr>
+    <tr><td class="h">③ 会社</td><td>取引先からの信用、契約上の責任の履行、売上と資金繰り、経営の継続。</td></tr>
+  </table>
+
+  <h3>1-3　社員にとってのBCP ― 安心して働ける会社であるために</h3>
+  <p>緊急時に実際に動くのは社員です。そして社員自身も被災者になり得ます。BCPは、社員が安心して働き続けられるための仕組みでもあります。</p>
+  <div class="g2">
+    <div class="card a"><div class="ct">「どうすればよいか」がわかる安心</div>出勤すべきか、自宅待機か、誰に連絡するか、自分の役割は何か。事前に決まっていれば、迷わず自分と家族の安全を優先した行動がとれます。</div>
+    <div class="card a"><div class="ct">生活と雇用が守られる安心</div>事業が止まったとき、給与や勤務はどうなるのか。取扱いを事前に決めて伝えておくことで、社員の不安を減らします。</div>
+    <div class="card a"><div class="ct">家族の安全を確認できる安心</div>家族の安否がわからないままでは、社員は仕事に集中できません。家族の安否確認や備えも社員に促します。</div>
+    <div class="card a"><div class="ct">会社の姿勢が伝わる安心</div>会社には社員の安全に配慮する義務があります（労働契約法5条）。BCPの整備は、社員を守る会社の姿勢を示すことになり、採用や定着にもつながります。</div>
+  </div>
+
+  <h3>1-4　貴社のシステムが止まったときの影響</h3>
+  <p>貴社のサービスは、タクシー会社の業務の「表（配車）」と「裏（事務処理）」の両方を支えています。そのため、貴社の停止は顧客1社の問題にとどまらず、多数のタクシー会社の営業、その乗務員、利用者にまで一度に影響します。</p>
+  <div class="imp">
+    <div class="src">株式会社<br>システムオリジン<br>の停止</div>
+    <div class="rows">
+      <div class="row"><div class="k">テレハイ<br>（配車システム）</div><div class="v">タクシー会社が電話やアプリで受けた注文を配車できない。利用者、特に高齢者や通院者などの移動手段がなくなる。</div></div>
+      <div class="row"><div class="k">タクコン<br>（事務処理システム）</div><div class="v">点呼（遠隔点呼・点呼番を含む）・運行管理・売上管理・給与計算など、タクシー会社の事務処理全体が止まる。<br><span class="em">点呼</span>は法令上の義務で、点呼ができなければ車両を出庫させられない。<br><span class="em">給与計算</span>が止まれば、顧客の乗務員の給料日にまで影響する（賃金は決まった期日に支払う必要があるため、顧客にとって重大な問題になる）。</div></div>
+      <div class="row"><div class="k">配車代行センター<br>（静岡市）</div><div class="v">受託している顧客の配車業務そのものが止まる。顧客は自社で配車する体制を持っていないことも多い。</div></div>
+      <div class="row"><div class="k">保守・サポート</div><div class="v">顧客側の機器（車載機・端末等）が被災・故障しても交換や復旧支援ができず、顧客の復旧が遅れる。</div></div>
+    </div>
+  </div>
+  <p class="small">※遠隔点呼・点呼番はタクコンの一部機能です。その他の機能範囲、各サービスの系統（テレハイ系・タクコン系）は、ヒアリング（08章）で確認のうえ整理します。</p>
+
+  <h3>1-5　BCPは「経営計画」― 文書は2つに分ける</h3>
+  <p>BCPは、どの顧客・サービスを優先するか、システムのどこに弱点があるか、いくら投資するかを決める<strong>経営計画</strong>であり、その中身は経営上の重要な情報です。一方で、緊急時に動く社員が内容を知らなければ、計画は機能しません。そこで、文書を次の2つに分けて作成します。</p>
+  <table>
+    <tr><th style="width:15%"></th><th>経営版（社外秘）</th><th>全社版（全社員に周知）</th></tr>
+    <tr><td class="h">主な内容</td><td>顧客・サービスの優先順位、システム構成と弱点、目標復旧時間、復旧手順の詳細、投資計画、財務への影響、顧客との契約上の約束</td><td>基本方針、BCPの発動基準、初動の行動（最初の1時間）、安否確認の方法、連絡網、各自の役割、災害時の勤務・賃金の取扱い</td></tr>
+    <tr><td class="h">閲覧できる人</td><td>経営陣、対策本部の各チームリーダー（担当部分）</td><td>全社員</td></tr>
+    <tr><td class="h">保管方法</td><td colspan="2"><strong>システム障害時にも見られるよう、紙とオフライン（持ち出し用の端末・記録媒体）でも保管する。</strong>社内サーバの中だけに置くと、障害時に開けなくなるためです。経営版は施錠保管・持出し管理をします。</td></tr>
+  </table>
+  <p>また、策定プロジェクトのメンバーには、検討内容について秘密を守る約束（守秘誓約）をしていただく手順を入れます。</p>
+
+  <h3 class="page">1-6　よくある失敗と、本プロジェクトでの対策</h3>
+  <table>
+    <tr><th style="width:38%">よくある失敗</th><th>本プロジェクトでの対策</th></tr>
+    <tr><td>作って終わり。数年たつと体制も連絡先も古くなっている</td><td>年1回の見直しと訓練をBCPに組み込む（STEP8）</td></tr>
+    <tr><td>分厚すぎて、緊急時に誰も読まない</td><td>全社版は要点に絞り、初動は1枚のカードにまとめる</td></tr>
+    <tr><td>「いつBCPを発動するか」が曖昧で、判断が遅れる</td><td>震度・停止時間などの<strong>発動基準を数値で</strong>決める</td></tr>
+    <tr><td>復旧手順はあるが、止まっている間の手段がない</td><td>顧客業務を続ける<strong>代替手段</strong>（手作業での運用など）を事象ごとに決める</td></tr>
+    <tr><td>バックアップはあるが、実際に戻せるか試していない</td><td>訓練に<strong>バックアップの復元テスト</strong>を入れる</td></tr>
+    <tr><td>特定の担当者しかわからない業務がある</td><td>業務の棚卸しで属人化を洗い出し、手順書化と代わりの担当者の育成を対策に入れる</td></tr>
+    <tr><td>BCPのファイル自体がサーバ内にあり、障害時に見られない</td><td>紙・オフラインでの保管をルール化する</td></tr>
+  </table>
+</section>
+
+<!-- ============ 02 中核 ============ -->
+<section class="page">
+  <div class="chap"><span class="no">02</span><h2>BCPの中核 ― 起きること・予防・代替・復旧・時間・チーム</h2></div>
+
+  <p>BCPで最も大切なのは、次の流れを事象ごとに具体的に決めておくことです。<strong>予防をしていても事故や災害は起きる</strong>という前提に立ち、「止まっている間どうするか」「どう戻すか」「何時間で戻すか」「誰が動くか」までを決めます。</p>
+  <div class="flow">
+    <div class="st"><b>① 起きること</b>何が起きたら<br>事業が止まるか</div><div class="ar">▶</div>
+    <div class="st"><b>② 予防</b>起きにくくする<br>被害を小さくする</div><div class="ar">▶</div>
+    <div class="st hl"><b>③ 初動・代替</b>発動・安否確認<br>止まっている間の手段</div><div class="ar">▶</div>
+    <div class="st hl"><b>④ 復旧</b>システム・業務を<br>元に戻す手順</div><div class="ar">▶</div>
+    <div class="st"><b>⑤ 時間</b>何時間で<br>どの時点まで戻すか</div><div class="ar">▶</div>
+    <div class="st"><b>⑥ チーム</b>誰が判断し<br>誰が動くか</div>
+  </div>
+
+  <h3>2-1　想定する事象と予防策の例</h3>
+  <p>事象は「原因」ごとに細かく分けすぎると、計画が膨らみ使いにくくなります。原因の一覧に加えて、<strong>結果として何が使えなくなるか</strong>（人・拠点・システム・データ・通信・電力・委託先）の視点でまとめると、想定外の事象にも応用できます。</p>
+  <table>
+    <thead><tr><th style="width:13%">分類</th><th style="width:30%">想定する事象</th><th>主な予防策の例</th></tr></thead>
+    <tr><td class="h">自然災害</td><td>地震・津波（本社・配車センターのある静岡は南海トラフ地震の想定域）、風水害、大雪（北海道・金沢等）</td><td>建物の耐震確認、機器・ラックの固定、ハザードマップ確認、備蓄、サーバの遠隔地設置、拠点間の相互支援体制</td></tr>
+    <tr><td class="h">システム・インフラ</td><td>サーバ・機器の故障、クラウド／データセンターの障害、更新作業（リリース）による不具合</td><td>冗長化（予備系の用意）、監視、リリース手順と切り戻し手順の整備、保守部品の確保</td></tr>
+    <tr><td class="h">通信・電力</td><td>通信キャリアの障害、IP電話の不通、長時間の停電</td><td>回線の二重化（別キャリア）、UPS・自家発電、モバイル回線の予備</td></tr>
+    <tr><td class="h">サイバー攻撃</td><td>ランサムウェア（データの暗号化）、不正アクセス、情報漏えい</td><td>多要素認証、管理者権限の限定、ネットワークから切り離したバックアップ、脆弱性対応、社員教育</td></tr>
+    <tr><td class="h">データ</td><td>データの消失・破損、誤操作による削除</td><td>定期バックアップ、遠隔地保管、復元テスト</td></tr>
+    <tr><td class="h">人</td><td>感染症による大量欠勤、キーパーソンの不在・急な退職、夜間・休日の要員不足</td><td>手順書化、代わりの担当者の育成（複数担当制）、在宅勤務の環境整備、連絡網</td></tr>
+    <tr><td class="h">外部の委託先・仕入先</td><td>機器メーカーの供給停止、クラウド事業者・委託先の障害や倒産、外部サービス（地図・GPS等）の停止</td><td>複数の調達先、在庫の確保、契約内容（SLA）の確認、代わりのサービスの検討</td></tr>
+  </table>
+
+  <h3>2-2　目標時間の決め方 ― 「何時間で」「どの時点まで」「どこまで」</h3>
+  <p>復旧の目標は、次の3つをセットで決めます。</p>
+  <table>
+    <tr><th style="width:26%">目標</th><th>意味</th><th style="width:34%">例</th></tr>
+    <tr><td class="h">目標復旧時間<br><span class="small">（RTO）</span></td><td>止まってから<strong>何時間以内に</strong>戻すか</td><td>テレハイの配車機能を○時間以内に再開</td></tr>
+    <tr><td class="h">目標復旧時点<br><span class="small">（RPO）</span></td><td>データを<strong>どの時点まで</strong>戻せればよいか（どこまでのデータ消失なら許容できるか）</td><td>給与・売上データは前日終了時点まで戻せること</td></tr>
+    <tr><td class="h">目標復旧レベル</td><td>まず<strong>どこまでの機能</strong>を戻すか（全機能か、最低限の機能か）</td><td>まず配車と点呼だけ再開し、帳票出力は後回し</td></tr>
+  </table>
+  <div class="point"><b>時期によって許容できる時間は変わります。</b>たとえば給与計算は、締日から支払日までの間に止まると影響が非常に大きくなります。売上の締めがある月末・月初、繁忙期の年末年始なども同様です。<strong>顧客の締日・支払日などの業務カレンダーと照らし合わせて</strong>目標を決めます。</div>
+  <div class="point"><b>顧客との契約と照らし合わせます。</b>顧客との契約・利用規約で、稼働率や復旧時間、障害時の連絡などを約束している場合があります。BCPの目標時間がこれと食い違わないよう確認します。</div>
+
+  <h3>2-3　代替手段（止まっている間どうするか）の考え方</h3>
+  <p>システムの復旧には時間がかかることがあります。その間も<strong>顧客の業務を最低限続けられる手段</strong>をあらかじめ決め、必要なものは顧客とも共有しておくことが、実効性のあるBCPの要です。</p>
+  <table>
+    <thead><tr><th style="width:24%">止まるもの</th><th>代替手段の検討例（実施できるかは策定の中で検討）</th></tr></thead>
+    <tr><td class="h">テレハイ（配車）</td><td>電話受付と手書きの配車台帳・無線による手動配車への切替え。そのための様式・手順を顧客と事前に共有しておく。</td></tr>
+    <tr><td class="h">タクコン（点呼）</td><td>紙の点呼記録簿で点呼を続け、復旧後にシステムへ入力する。様式を顧客に配布しておく（運用方法は顧客と事前に確認）。</td></tr>
+    <tr><td class="h">タクコン（給与計算）</td><td>予備環境での計算、直近データからの計算など、<strong>顧客の給料日に遅れないための方法</strong>を事前に顧客と取り決めておく。</td></tr>
+    <tr><td class="h">配車代行センター</td><td>他拠点・在宅での受付、顧客への一時的な業務の戻し（その場合の手順を顧客と事前に合意）。</td></tr>
+    <tr><td class="h">本社機能（静岡）</td><td>静岡以外の拠点（営業所）や在宅勤務での業務継続、判断の代行者の指名。</td></tr>
+  </table>
+</section>
+
+<section class="page">
+  <h3>2-4　BCP中核表（記入例）</h3>
+  <p>事象ごとに、次のような表を1枚ずつ作成します。これがBCP本体（経営版）の中心となります。以下は考え方を示す<strong>記入例</strong>で、時間は「○」としています。</p>
+
+  <h4>記入例1：テレハイ（配車システム）の全面停止</h4>
+  <table>
+    <tr><td class="h" style="width:20%">想定する事象</td><td>サーバ・クラウドの障害、または更新作業の不具合により、全顧客でテレハイの配車機能が使えない</td></tr>
+    <tr><td class="h">予防策</td><td>予備系への自動切替え、監視、リリース前の検証と切り戻し手順、深夜帯のリリースルール</td></tr>
+    <tr><td class="h">発動基準</td><td>全面停止が○分以上続く、または復旧の見込みが立たないとき</td></tr>
+    <tr><td class="h">初動（〜1時間）</td><td>障害の検知と報告 → 対策本部の立上げ → 顧客への第一報（障害発生・代替手段への切替え依頼） → 原因の切り分け</td></tr>
+    <tr><td class="h">代替手段</td><td>顧客は手動配車（電話受付・手書き台帳・無線）に切り替える。配車代行センターも同じ手順で継続</td></tr>
+    <tr><td class="h">復旧手順</td><td>予備系への切替え、または直前の版への切り戻し → 動作確認 → 顧客へ再開連絡 → 停止中の記録の入力支援</td></tr>
+    <tr><td class="h">目標時間</td><td>目標復旧時間：○時間以内　／　目標復旧時点：○　／　まず配車機能を優先して再開</td></tr>
+    <tr><td class="h">担当チーム</td><td>テレハイ復旧チーム（復旧作業）、インフラ・セキュリティチーム（基盤）、顧客対応チーム（連絡・支援）</td></tr>
+  </table>
+
+  <h4>記入例2：タクコン（事務処理システム）の停止 ― 給与計算の締日〜支払日の期間中</h4>
+  <table>
+    <tr><td class="h" style="width:20%">想定する事象</td><td>データの破損またはランサムウェアにより、タクコンが使えず、点呼・給与計算ができない</td></tr>
+    <tr><td class="h">予防策</td><td>ネットワークから切り離したバックアップ、多要素認証、管理者権限の限定、定期的な復元テスト</td></tr>
+    <tr><td class="h">発動基準</td><td>停止が○時間以上続く見込み、またはサイバー攻撃の疑いを検知したとき（直ちに発動）</td></tr>
+    <tr><td class="h">初動（〜1時間）</td><td>被害拡大の防止（ネットワークの遮断等） → 対策本部の立上げ → 顧客への第一報 → 必要に応じて警察・関係機関、専門業者へ連絡</td></tr>
+    <tr><td class="h">代替手段</td><td>点呼：紙の点呼記録簿で継続。給与計算：予備環境での計算など、事前に顧客と取り決めた方法で給料日に間に合わせる</td></tr>
+    <tr><td class="h">復旧手順</td><td>安全を確認したバックアップからの復元 → データの整合性確認 → 停止中の点呼記録等の入力 → 顧客へ再開連絡</td></tr>
+    <tr><td class="h">目標時間</td><td>点呼機能：○時間以内　／　給与計算：顧客の支払日に間に合う時点まで　／　目標復旧時点：前日終了時点 など</td></tr>
+    <tr><td class="h">担当チーム</td><td>タクコン復旧チーム、インフラ・セキュリティチーム、顧客対応チーム、事務局（関係機関対応・記録）</td></tr>
+  </table>
+
+  <h4>記入例3：大地震で静岡の本社と配車センターが同時に被災</h4>
+  <table>
+    <tr><td class="h" style="width:20%">想定する事象</td><td>静岡県で震度6強の地震。本社・配車センターとも出社できず、社員の多くが被災者となる</td></tr>
+    <tr><td class="h">予防策</td><td>サーバを静岡以外に設置、在宅勤務の環境整備、他拠点への権限の分散、備蓄、安否確認システムの導入</td></tr>
+    <tr><td class="h">発動基準</td><td>拠点所在地で震度6弱以上（自動発動）</td></tr>
+    <tr><td class="h">初動（〜1時間）</td><td>社員は自身と家族の安全確保を最優先 → 安否確認 → 静岡以外の代行者が対策本部を立上げ → システムの稼働状況確認</td></tr>
+    <tr><td class="h">代替手段</td><td>配車代行業務は他拠点・在宅で継続、または顧客へ一時的に戻す。顧客からの問い合わせは静岡以外の拠点で受ける</td></tr>
+    <tr><td class="h">復旧手順</td><td>社員の安全確保を前提に、拠点の被害確認 → 出社できる体制の段階的な回復 → 顧客側の被災状況の把握と支援（機器交換等）</td></tr>
+    <tr><td class="h">目標時間</td><td>配車代行業務の再開：○時間以内　／　システムは停止させないことを目標</td></tr>
+    <tr><td class="h">担当チーム</td><td>本部長代行（静岡以外）、配車代行継続チーム、顧客対応チーム、人事・総務チーム（安否確認・勤務の指示）</td></tr>
+  </table>
+</section>
+
+<!-- ============ 03 体制 ============ -->
+<section class="page">
+  <div class="chap"><span class="no">03</span><h2>体制 ― 平時の策定チームと発生時の対策本部</h2></div>
+
+  <h3>3-1　平時：BCP策定プロジェクトの体制</h3>
+  <table>
+    <thead><tr><th style="width:20%">役割</th><th style="width:26%">担当（想定）</th><th>主な役割</th></tr></thead>
+    <tr><td class="h">最終責任者</td><td>代表取締役</td><td>基本方針・優先順位・投資の決定、BCPの承認。<strong>優先順位の判断は現場任せにせず経営者が行う</strong></td></tr>
+    <tr><td class="h">事務局</td><td>総務または経営企画</td><td>全体の進行管理、定例会の運営、ヒアリングの取りまとめ、文書化</td></tr>
+    <tr><td class="h">部門代表</td><td>テレハイ開発・運用<br>タクコン開発・運用<br>インフラ・ネットワーク<br>カスタマーサポート<br>配車代行センター<br>営業（全国8営業所）<br>機器の調達・物流<br>総務・人事・経理</td><td>自部門の業務の棚卸し、止まったときの影響と必要な資源の洗い出し、対策と手順の作成</td></tr>
+    <tr><td class="h">外部の協力者</td><td>土橋社労士事務所</td><td>策定プロジェクトの進行支援、人・労務面（安否確認、勤務・賃金の取扱い、就業規則等の整備）</td></tr>
+    <tr><td class="h"></td><td>必要に応じて：IT・セキュリティ専門家、データセンター・クラウド事業者、保険代理店</td><td>技術的な対策の助言、事業者側の障害対応の確認、保険の見直し</td></tr>
+  </table>
+  <p class="small">※プロジェクトメンバーには、検討内容についての守秘誓約をお願いします。</p>
+
+  <h3>3-2　発生時：対策本部の体制</h3>
+  <div class="org">
+    <div class="top">本部長（代表取締役）</div>
+    <div class="vline"></div>
+    <div class="mid">事務局（情報の集約・記録・関係機関との連絡）</div>
+    <div class="vline"></div>
+    <div class="teams">
+      <div class="t"><b>テレハイ<br>復旧チーム</b>配車システムの復旧</div>
+      <div class="t"><b>タクコン<br>復旧チーム</b>事務処理システムの復旧</div>
+      <div class="t"><b>インフラ・<br>セキュリティ</b>サーバ・通信・サイバー攻撃</div>
+      <div class="t"><b>配車代行<br>継続チーム</b>配車代行業務の継続</div>
+      <div class="t"><b>顧客対応<br>チーム</b>サポート窓口と全国8営業所</div>
+      <div class="t"><b>人事・総務<br>チーム</b>安否確認・勤務・給与</div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th style="width:20%">チーム</th><th>主な役割</th></tr></thead>
+    <tr><td class="h">本部長</td><td>BCP発動の判断、優先順位の最終判断、顧客・社外への重要な発表の決定</td></tr>
+    <tr><td class="h">事務局</td><td>被害・復旧状況の集約と記録、本部会議の運営、関係機関（警察・行政等）への連絡</td></tr>
+    <tr><td class="h">テレハイ復旧チーム</td><td>配車システムの原因調査と復旧、予備系への切替え、手動配車への切替え支援</td></tr>
+    <tr><td class="h">タクコン復旧チーム</td><td>事務処理システムの復旧、データの復元と整合性確認、点呼・給与計算の代替手段の支援</td></tr>
+    <tr><td class="h">インフラ・セキュリティ</td><td>サーバ・ネットワーク・通信・電力の復旧、サイバー攻撃時の遮断と調査、クラウド事業者等との連絡</td></tr>
+    <tr><td class="h">配車代行継続チーム</td><td>配車代行業務の継続（他拠点・在宅への切替え）、受託顧客との連絡</td></tr>
+    <tr><td class="h">顧客対応チーム</td><td>顧客への第一報と続報、問い合わせ対応、顧客側の機器の交換・復旧支援</td></tr>
+    <tr><td class="h">人事・総務チーム</td><td>社員と家族の安否確認、出勤・待機・帰宅の指示、勤務と賃金の取扱い、社員の健康管理とメンタルケア</td></tr>
+  </table>
+
+  <h3>3-3　代行順位 ― 本部長やリーダーが不在のとき</h3>
+  <ul>
+    <li>本部長・各チームリーダーには、<strong>第1代行者・第2代行者</strong>を決めておきます。</li>
+    <li>静岡での被災を想定し、<strong>少なくとも1名は静岡以外の拠点の人</strong>を代行者に含めます。</li>
+    <li><strong>夜間・休日</strong>に発生した場合に、誰が最初に判断し、誰を呼び出すかを決めます。</li>
+  </ul>
+
+  <h3>3-4　BCPの発動基準（例）</h3>
+  <p>「BCPを発動するかどうか」で迷うと、初動が遅れます。できるだけ<strong>数値や客観的な事実</strong>で基準を決めます。</p>
+  <table>
+    <thead><tr><th style="width:30%">区分</th><th>発動基準の例</th></tr></thead>
+    <tr><td class="h">自然災害</td><td>本社・配車センター・営業所の所在地で震度6弱以上（自動発動）、大津波警報、特別警報の発表</td></tr>
+    <tr><td class="h">システム障害</td><td>テレハイ・タクコンの全面停止が○分以上続く、または復旧の見込みが立たない</td></tr>
+    <tr><td class="h">サイバー攻撃</td><td>ランサムウェア・不正アクセスの疑いを検知したとき（直ちに発動）</td></tr>
+    <tr><td class="h">感染症・人員</td><td>特定の部門・拠点で出勤できる人数が○割を下回ったとき</td></tr>
+    <tr><td class="h">その他</td><td>上記以外で、本部長が必要と判断したとき</td></tr>
+  </table>
+
+  <h3>3-5　初動のタイムライン（例）</h3>
+  <table>
+    <thead><tr><th style="width:17%">時間</th><th>社員全員</th><th>対策本部</th></tr></thead>
+    <tr><td class="h">発生直後</td><td>自身と家族の安全確保（災害時）</td><td>発動の判断、本部の立上げ（参集またはオンライン）</td></tr>
+    <tr><td class="h">〜1時間</td><td>安否の報告、指示があるまで待機</td><td>安否・被害・システム状況の把握、顧客への第一報</td></tr>
+    <tr><td class="h">〜24時間</td><td>指示に従い出勤・在宅勤務・待機</td><td>代替手段への切替え、復旧作業の開始、顧客への続報</td></tr>
+    <tr><td class="h">〜72時間</td><td>交代制勤務などで継続</td><td>優先業務の再開、要員の交代と健康管理、長期化への備え</td></tr>
+    <tr><td class="h">1週間〜</td><td>通常勤務への段階的な復帰</td><td>全面復旧、顧客への報告、振り返りとBCPの改善</td></tr>
+  </table>
+  <div class="point"><b>社員全員向けの部分は、1枚のカード（携帯カード）にまとめます。</b>「まず何をするか」「安否の報告方法」「連絡先」だけを記載し、財布や社員証ケースに入れて持ち歩ける形にします。</div>
+</section>
+
+<!-- ============ 04 フロー ============ -->
+<section class="page">
+  <div class="chap"><span class="no">04</span><h2>策定の全体フロー（STEP0〜8）</h2></div>
+  <p>BCPは、次の9つのステップで策定します。前のステップの結果を次のステップで使うため、順番に進めることが大切です。</p>
+  <table>
+    <thead><tr><th class="c" style="width:9%">STEP</th><th style="width:30%">内容</th><th style="width:31%">ここで決めること</th><th>成果物</th></tr></thead>
+    <tr><td class="c h">0</td><td>キックオフ<br><span class="small">体制・対象範囲・進め方を決める</span></td><td>メンバー、事務局、対象とする拠点・事業、定例会の日程</td><td>プロジェクト体制表、スケジュール</td></tr>
+    <tr><td class="c h">1</td><td>基本方針を決める<br><span class="small">BCPの目的</span></td><td>何のためにBCPを作るか、何を最優先に守るか</td><td>BCP基本方針</td></tr>
+    <tr><td class="c h">2</td><td>現状を把握する<br><span class="small">事業・業務・資源の棚卸し</span></td><td>どんな業務があり、何（人・システム・拠点・委託先）に支えられているか</td><td>業務一覧、拠点一覧、システム一覧、委託先一覧</td></tr>
+    <tr><td class="c h">3</td><td>影響を分析し、優先順位を決める</td><td>顧客・サービスの優先順位、目標復旧時間・目標復旧時点</td><td>優先順位表、目標時間一覧</td></tr>
+    <tr><td class="c h">4</td><td>リスクと弱点を洗い出す</td><td>想定する事象、止まる原因となる弱点（1つ止まると全部止まる箇所）</td><td>想定事象一覧、弱点一覧</td></tr>
+    <tr><td class="c h">5</td><td>対策を決める<br><span class="small">予防・代替・復旧</span></td><td>予防策、代替手段、復旧の方法、投資の優先順位</td><td>対策一覧、投資計画</td></tr>
+    <tr><td class="c h">6</td><td>文書にまとめる</td><td>発動基準、体制、初動、中核表、連絡網、様式</td><td>BCP本体（経営版・全社版）、携帯カード</td></tr>
+    <tr><td class="c h">7</td><td>教育と訓練</td><td>社員への周知方法、訓練の内容と頻度</td><td>訓練計画、訓練記録、改善点</td></tr>
+    <tr><td class="c h">8</td><td>点検と見直し</td><td>見直しの時期と担当、年間の運用計画</td><td>見直し計画（2年目以降の運用）</td></tr>
+  </table>
+
+  <div class="point"><b>途中でも使える状態をつくる（先行整備）。</b>12か月の完成を待つ間に災害が起きる可能性もあります。そこで、STEP2と並行して<strong>「安否確認の方法」と「初動のルール（最初に誰が何をするか）」の暫定版を3か月目までに作り、先に運用を始めます。</strong>後のステップで内容を見直し、正式版に反映します。</div>
+
+  <h3>事業継続力強化計画の認定について（任意）</h3>
+  <p>策定したBCPの内容をもとに、国（経済産業大臣）の「事業継続力強化計画」の認定を受けることも検討できます。認定を受けると、防災・減災設備への税制上の優遇、補助金の審査での加点、金融支援などを受けられる場合があります。制度の内容は申請時点の最新情報を確認します。</p>
+</section>
+
+<!-- ============ 05 スケジュール ============ -->
+<section class="page">
+  <div class="chap"><span class="no">05</span><h2>スケジュール（12か月）</h2></div>
+  <p>通常業務と並行して無理なく進められるよう、<strong>12か月</strong>の余裕のある計画とします。開始月は貴社と調整のうえ決定します。</p>
+  <table class="gantt">
+    <thead><tr><th style="width:26%">STEP・内容</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr></thead>
+    <tr><td class="n">STEP0 キックオフ</td><td class="b"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">STEP1 基本方針</td><td class="b"></td><td class="b"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">先行整備（安否確認・初動の暫定版）</td><td></td><td class="b2"></td><td class="m">運用</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">STEP2 現状把握（全拠点ヒアリング）</td><td></td><td class="b"></td><td class="b"></td><td class="b"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">STEP3 影響分析・優先順位</td><td></td><td></td><td></td><td class="b"></td><td class="b"></td><td class="b"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">STEP4 リスクと弱点の洗い出し</td><td></td><td></td><td></td><td></td><td></td><td class="b"></td><td class="b"></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">STEP5 対策の決定</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="b"></td><td class="b"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="n">STEP6 文書化</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="b"></td><td class="b"></td><td class="b"></td><td></td><td></td></tr>
+    <tr><td class="n">STEP7 教育・訓練</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="b"></td><td class="b"></td><td></td></tr>
+    <tr><td class="n">経営承認・全社周知</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="m">完成</td></tr>
+    <tr><td class="n">STEP8 見直し計画</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="b2"></td><td class="b"></td></tr>
+  </table>
+  <p class="small">※数字は開始からの月数です。</p>
+
+  <h3>月ごとの到達点</h3>
+  <table>
+    <thead><tr><th style="width:16%">時期</th><th>到達点</th></tr></thead>
+    <tr><td class="h">1〜2か月目</td><td>体制と対象範囲の確定、基本方針の決定、守秘誓約</td></tr>
+    <tr><td class="h">3か月目</td><td><span class="em">安否確認と初動ルールの暫定版を運用開始</span>（安否確認の試行を1回実施）</td></tr>
+    <tr><td class="h">2〜4か月目</td><td>全拠点（本社・配車センター・8営業所）のヒアリング完了、業務・システム・委託先の一覧化</td></tr>
+    <tr><td class="h">4〜6か月目</td><td>テレハイ・タクコンを中心とした優先順位と目標時間の決定（経営者の判断）</td></tr>
+    <tr><td class="h">6〜8か月目</td><td>想定事象と弱点の確定、予防・代替・復旧の対策と投資計画の決定</td></tr>
+    <tr><td class="h">8〜10か月目</td><td>BCP本体（経営版・全社版）、中核表、携帯カード、様式類の完成</td></tr>
+    <tr><td class="h">10〜11か月目</td><td>机上訓練とバックアップの復元テストの実施、結果を受けた修正</td></tr>
+    <tr><td class="h">12か月目</td><td>経営承認、全社員への周知、2年目以降の見直し・訓練計画の決定</td></tr>
+  </table>
+
+  <h3>会議の進め方</h3>
+  <ul>
+    <li><strong>定例会</strong>：月1回、60〜90分。経営層・事務局・部門代表が参加し、各STEPの検討結果を確認して決定します。</li>
+    <li><strong>ヒアリング</strong>：部門・拠点ごとに60分程度。営業所はオンラインでも実施できます。</li>
+    <li><strong>宿題の管理</strong>：事務局が、定例会ごとに「誰が・いつまでに・何をするか」を記録し、次回に確認します。</li>
+  </ul>
+</section>
+
+<!-- ============ 06 各STEP ============ -->
+<section class="page">
+  <div class="chap"><span class="no">06</span><h2>各STEPの詳しい手順</h2></div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 0</span><span class="stt">キックオフ ― 体制・対象範囲・進め方を決める</span><span class="sp">1か月目</span></div>
+    <div class="sb">
+      <h4>検討すること</h4>
+      <ul>
+        <li>策定プロジェクトのメンバー（3-1の体制表をもとに、部門代表を指名）</li>
+        <li>対象範囲：全拠点・全事業を対象とするか。まずは中核（テレハイ・タクコン・配車代行センター）から始めるか</li>
+        <li>定例会の日程、ヒアリングの進め方、資料の保管場所と閲覧範囲</li>
+      </ul>
+      <div class="dec"><b>ここで決めること：</b>メンバーと役割、対象範囲、12か月のスケジュール、守秘のルール</div>
+      <h4>進め方のコツ</h4>
+      <ul>
+        <li>キックオフには<strong>代表取締役が必ず出席</strong>し、「会社として取り組む」ことを自ら伝えます。BCPは経営計画であり、トップの関与がないと部門の協力が得られません。</li>
+        <li>最初から完璧を目指さず、「まず中核を固め、毎年広げていく」方針を共有します。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 1</span><span class="stt">基本方針を決める ― BCPの目的</span><span class="sp">1〜2か月目</span></div>
+    <div class="sb">
+      <h4>検討すること</h4>
+      <ul>
+        <li>何のためにBCPを作るのか（守る3つのもの：社員・顧客・会社）</li>
+        <li>緊急時に何を最優先するか（判断に迷ったときの拠り所）</li>
+        <li>社会的な責任をどう考えるか（タクシーは地域の移動を支える公共交通の一部であること）</li>
+      </ul>
+      <div class="box pale">
+        <div class="bt">基本方針の例文</div>
+        <ol style="margin-bottom:0">
+          <li>社員とその家族の生命と安全を最優先とします。</li>
+          <li>顧客であるタクシー事業者の配車業務と事務処理を止めない、止まっても速やかに再開させることで、地域の移動を支える責任を果たします。</li>
+          <li>社員の雇用と生活を守り、社員が安心して働き続けられる会社であり続けます。</li>
+          <li>顧客・取引先に対して、正確な情報を速やかに提供します。</li>
+          <li>平時から備えと訓練を続け、計画を毎年見直します。</li>
+        </ol>
+      </div>
+      <div class="dec"><b>ここで決めること：</b>BCP基本方針（経営者の言葉で、5項目程度）</div>
+      <h4>進め方のコツ</h4>
+      <ul>
+        <li>基本方針は全社版にも載せ、社員に伝えます。短く、社員が覚えられる表現にします。</li>
+        <li>「人命最優先」を明記しておくと、災害時に社員が無理な出社をしない判断の根拠になります。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 2</span><span class="stt">現状を把握する ― 事業・業務・資源の棚卸し</span><span class="sp">2〜4か月目</span></div>
+    <div class="sb">
+      <h4>検討すること</h4>
+      <ul>
+        <li><strong>サービスの一覧</strong>：テレハイ系・タクコン系・その他（受注アプリ、ドライバーアプリ、注文端末等）の区分、提供形態（クラウド・オンプレミス・機器）、利用顧客数</li>
+        <li><strong>業務の一覧</strong>：部門ごとの業務、担当者、代わりにできる人がいるか</li>
+        <li><strong>業務を支える資源</strong>：人、拠点、システム・サーバ、データ、通信、電力、委託先・仕入先、資金</li>
+        <li><strong>拠点の状況</strong>：本社・配車センター・8営業所の所在地、人数、建物、ハザードマップ上の区分</li>
+      </ul>
+      <div class="dec"><b>ここで決めること：</b>業務一覧、拠点一覧、システム一覧、委託先・仕入先一覧（08章のヒアリング項目で作成）</div>
+      <h4>進め方のコツ</h4>
+      <ul>
+        <li>システム会社では、<strong>「どのサーバ・クラウドで、何が動いているか」</strong>が一覧になっていないことがよくあります。システム構成の全体図をこの段階で作ります。</li>
+        <li><strong>「この人しかわからない」業務</strong>を必ず聞き出します。属人化は最大の弱点の一つです。</li>
+        <li>並行して、安否確認と初動ルールの暫定版を作ります（先行整備）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 3</span><span class="stt">影響を分析し、優先順位を決める</span><span class="sp">4〜6か月目</span></div>
+    <div class="sb">
+      <p>すべての業務を同時に守ることはできません。<strong>「どれから守り、どれから戻すか」</strong>を決めるのがこのステップで、BCPの中で最も経営判断が必要な部分です。</p>
+      <h4>評価の軸</h4>
+      <table>
+        <thead><tr><th style="width:28%">評価の軸</th><th>確認すること</th></tr></thead>
+        <tr><td class="h">利用者の安全</td><td>止まると、利用者（高齢者・通院者等）の移動や安全に影響するか</td></tr>
+        <tr><td class="h">顧客の営業への影響</td><td>止まると、タクシー会社が営業できなくなるか（配車・点呼）</td></tr>
+        <tr><td class="h">法令・契約上の責任</td><td>顧客が法令上の義務（点呼、賃金の期日払い等）を果たせなくなるか。契約上の約束に反するか</td></tr>
+        <tr><td class="h">影響の広がり</td><td>何社・何台に影響するか</td></tr>
+        <tr><td class="h">売上・信用</td><td>売上の割合、解約や信用低下につながるか</td></tr>
+        <tr><td class="h">代わりの手段</td><td>手作業などの代替手段があるか。ない業務ほど優先度が上がる</td></tr>
+        <tr><td class="h">時期</td><td>締日・支払日・繁忙期など、特に止められない時期があるか</td></tr>
+      </table>
+      <h4>優先順位の記入例</h4>
+      <table>
+        <thead><tr><th style="width:28%">対象</th><th class="c" style="width:12%">優先度</th><th>理由（例）</th><th class="c" style="width:15%">目標復旧時間</th></tr></thead>
+        <tr><td>テレハイ（配車機能）</td><td class="c"><span class="tag">最優先</span></td><td>止まるとタクシーが配車できず、利用者の移動に直結する</td><td class="c fill">○時間</td></tr>
+        <tr><td>タクコン（点呼機能）</td><td class="c"><span class="tag">最優先</span></td><td>点呼ができないと車両を出庫できない</td><td class="c fill">○時間</td></tr>
+        <tr><td>配車代行センター</td><td class="c"><span class="tag">最優先</span></td><td>顧客の配車業務そのもの</td><td class="c fill">○時間</td></tr>
+        <tr><td>タクコン（給与計算）</td><td class="c"><span class="tag">高</span></td><td>締日〜支払日は最優先に上がる。乗務員の生活に直結</td><td class="c fill">支払日に間に合う時点</td></tr>
+        <tr><td>タクコン（売上・日報管理）</td><td class="c"><span class="tag n">中</span></td><td>数日なら後から入力で対応できる可能性</td><td class="c fill">○日</td></tr>
+        <tr><td>顧客側機器の保守・交換</td><td class="c"><span class="tag n">中</span></td><td>顧客の被災時に復旧の鍵になる</td><td class="c fill">○日</td></tr>
+        <tr><td>新規開発・営業活動</td><td class="c"><span class="tag n">低</span></td><td>一時的に止めても顧客への影響は小さい</td><td class="c fill">○週間</td></tr>
+      </table>
+      <div class="dec"><b>ここで決めること：</b>サービス・機能ごとの優先順位、目標復旧時間、目標復旧時点、目標復旧レベル（経営者が最終判断）</div>
+      <h4>進め方のコツ</h4>
+      <ul>
+        <li>テレハイとタクコンは<strong>別々に</strong>評価し、タクコンはさらに<strong>機能ごと</strong>に分けて評価します。</li>
+        <li>主要な顧客との<strong>契約上の約束</strong>を確認し、目標時間と食い違いがないかを見ます。</li>
+        <li>部門の意見は「自部門が最優先」になりがちです。評価の軸で客観的に比べ、最後は経営者が決めます。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 4</span><span class="stt">リスクと弱点を洗い出す</span><span class="sp">6〜7か月目</span></div>
+    <div class="sb">
+      <h4>検討すること</h4>
+      <ul>
+        <li><strong>想定する事象</strong>：2-1の一覧をもとに、貴社で起こり得るもの、影響の大きいものを選びます。</li>
+        <li><strong>弱点</strong>：優先度の高い業務について、「これが1つ止まると全部止まる」という箇所を探します。</li>
+      </ul>
+      <div class="box pale">
+        <div class="bt">システム会社で特に確認したい弱点</div>
+        <ul style="margin-bottom:0">
+          <li>サーバやデータが本社（静岡）など1か所に集中していないか</li>
+          <li>本社と配車センターがともに静岡市内にあり、<strong>同時に被災する</strong>おそれはないか</li>
+          <li>予備系（冗長化）はあるか。予備系に実際に切り替えたことはあるか</li>
+          <li>バックアップはネットワークから切り離して保管されているか（ランサムウェア対策）</li>
+          <li>通信キャリア、クラウド事業者、地図・GPS等の外部サービスに、1社だけに頼っている部分はないか</li>
+          <li>管理者権限・パスワード・暗号鍵などを、特定の1人しか知らない状態になっていないか</li>
+          <li>ソースコード・開発環境は、拠点が使えなくなっても復元できるか</li>
+          <li>顧客側に設置している機器の予備在庫や交換要員は足りるか</li>
+          <li>夜間・休日に障害が起きたとき、対応できる人がいるか</li>
+        </ul>
+      </div>
+      <div class="dec"><b>ここで決めること：</b>BCPで想定する事象の一覧、優先度の高い業務ごとの弱点一覧</div>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 5</span><span class="stt">対策を決める ― 予防・代替・復旧</span><span class="sp">7〜8か月目</span></div>
+    <div class="sb">
+      <h4>検討すること</h4>
+      <ul>
+        <li><strong>予防策</strong>：弱点ごとに、起きにくくする・被害を小さくする対策（2-1参照）</li>
+        <li><strong>代替手段</strong>：止まっている間に顧客業務を続ける方法（2-3参照）。顧客と共有すべき様式・手順</li>
+        <li><strong>復旧の方法</strong>：誰が、どの順番で、何を使って戻すか</li>
+        <li><strong>投資の優先順位</strong>：費用と効果を比べ、どこから手を付けるか</li>
+      </ul>
+      <h4>対策の整理のしかた</h4>
+      <table>
+        <thead><tr><th style="width:22%">区分</th><th>内容</th><th style="width:34%">例</th></tr></thead>
+        <tr><td class="h">すぐできる対策</td><td>費用がほとんどかからず、すぐ実施できる</td><td>連絡網の整備、手順書の作成、紙の様式の準備</td></tr>
+        <tr><td class="h">1年以内の対策</td><td>予算化して1年以内に実施</td><td>安否確認システムの導入、バックアップの遠隔地保管</td></tr>
+        <tr><td class="h">中長期の対策</td><td>大きな投資が必要で、計画的に実施</td><td>サーバの複数拠点化、回線の二重化</td></tr>
+      </table>
+      <div class="dec"><b>ここで決めること：</b>事象ごとの予防・代替・復旧の方法（BCP中核表の中身）、対策の実施計画と投資計画</div>
+      <h4>進め方のコツ</h4>
+      <ul>
+        <li>代替手段は、<strong>顧客が実際に使えるか</strong>が大切です。必要に応じて主要な顧客の意見も聞きます。</li>
+        <li>すべてを一度にやろうとせず、「すぐできる対策」から着手します。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 6</span><span class="stt">文書にまとめる</span><span class="sp">8〜10か月目</span></div>
+    <div class="sb">
+      <h4>作成するもの</h4>
+      <ul>
+        <li><strong>BCP本体（経営版）</strong>：基本方針、体制、発動基準、優先順位と目標時間、BCP中核表、対策計画、連絡先一覧</li>
+        <li><strong>BCP本体（全社版）</strong>：基本方針、発動基準、初動の行動、安否確認の方法、連絡網、各自の役割、災害時の勤務・賃金の取扱い</li>
+        <li><strong>携帯カード</strong>：初動・安否報告の方法・連絡先だけを記載した1枚</li>
+        <li><strong>様式類</strong>：被害状況の報告様式、顧客への連絡文のひな形、紙の点呼記録簿・手動配車台帳など代替手段の様式</li>
+      </ul>
+      <div class="dec"><b>ここで決めること：</b>BCP本体（2種類）、携帯カード、様式類、保管方法（紙・オフライン）</div>
+      <h4>進め方のコツ</h4>
+      <ul>
+        <li><strong>顧客への連絡文のひな形</strong>を事前に作っておくと、障害時の第一報が早くなります。</li>
+        <li>文章より表を使い、緊急時に探しやすい構成にします（付録の目次案を参照）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 7</span><span class="stt">教育と訓練</span><span class="sp">10〜11か月目</span></div>
+    <div class="sb">
+      <p>訓練は「BCPが本当に使えるか」を確かめる場です。うまくいかなかった点こそが改善点になります。</p>
+      <table>
+        <thead><tr><th style="width:26%">訓練の種類</th><th>内容</th><th style="width:22%">頻度の目安</th></tr></thead>
+        <tr><td class="h">安否確認訓練</td><td>全社員が実際に安否を報告し、回答率と時間を確認する</td><td>年2回程度</td></tr>
+        <tr><td class="h">机上訓練</td><td>「テレハイが全面停止した」等の想定で、対策本部のメンバーが手順どおりに判断・行動できるかを話し合いで確認する</td><td>年1回以上</td></tr>
+        <tr><td class="h">バックアップ復元テスト</td><td>バックアップから実際にデータを戻し、目標時間内に復元できるかを確認する</td><td>年1回以上</td></tr>
+        <tr><td class="h">切替え訓練</td><td>予備系への切替え、在宅での配車受付などを実際に行う</td><td>年1回程度</td></tr>
+        <tr><td class="h">周知・教育</td><td>全社員への全社版の説明、新入社員への教育</td><td>年1回・入社時</td></tr>
+      </table>
+      <div class="dec"><b>ここで決めること：</b>訓練計画（種類・時期・参加者）、訓練結果と改善点</div>
+    </div>
+  </div>
+
+  <div class="stepbox">
+    <div class="sh"><span class="sn">STEP 8</span><span class="stt">点検と見直し ― 2年目以降の運用</span><span class="sp">11〜12か月目</span></div>
+    <div class="sb">
+      <h4>見直しのタイミング</h4>
+      <ul>
+        <li><strong>定期</strong>：年1回（例：訓練の結果を受けて）</li>
+        <li><strong>随時</strong>：組織変更・人事異動、拠点の新設・移転、新サービスの開始、システム構成の変更、実際に障害・災害が起きたとき</li>
+      </ul>
+      <h4>見直す内容</h4>
+      <ul>
+        <li>連絡網・代行者・チームのメンバー（人事異動のたびに更新）</li>
+        <li>優先順位と目標時間（新サービス・顧客の増加に合わせて）</li>
+        <li>対策の進み具合（投資計画の実施状況）</li>
+      </ul>
+      <div class="dec"><b>ここで決めること：</b>見直しの担当者と時期、年間の運用計画（訓練・見直し・報告）</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 人・労務 ============ -->
+<section class="page">
+  <div class="chap"><span class="no">07</span><h2>人・労務面のポイント</h2></div>
+  <p>BCPの実効性は、緊急時に社員が安全に、迷わず動けるかどうかで決まります。人・労務面で事前に決めておくべき事項は次のとおりです（当事務所が中心となって支援します）。</p>
+
+  <table>
+    <thead><tr><th style="width:22%">項目</th><th>決めておくこと・ポイント</th></tr></thead>
+    <tr><td class="h">安否確認</td><td>安否確認の手段（安否確認システム、メール、チャット等）、報告する内容、未回答者への対応。<strong>家族の安否確認</strong>の方法（災害用伝言ダイヤル等）も社員に周知する。</td></tr>
+    <tr><td class="h">出勤・帰宅の判断基準</td><td>災害時に出社するか、自宅待機か、在宅勤務かの基準。帰宅困難時の社内待機の判断、備蓄。<strong>無理な出社をさせない</strong>ことを明記する。</td></tr>
+    <tr><td class="h">在宅勤務</td><td>緊急時に在宅勤務へ切り替えられるよう、規程・機器・情報セキュリティのルールを整える。</td></tr>
+    <tr><td class="h">休業と賃金</td><td>会社の責任による休業の場合は、平均賃金の60％以上の休業手当が必要（労働基準法26条）。天災など会社の責任によらない休業の場合の取扱いも含め、<strong>事前にルールを決めて社員に伝えておく</strong>ことが安心につながる。</td></tr>
+    <tr><td class="h">災害時の時間外・休日労働</td><td>災害などで臨時の必要がある場合、労働基準監督署長の許可（緊急時は事後の届出）により時間外・休日労働が可能（労働基準法33条）。割増賃金は必要。あわせて36協定の内容（特別条項）も確認する。</td></tr>
+    <tr><td class="h">健康管理・長時間労働</td><td>復旧作業が長引くと長時間労働になりやすい。交代制、休憩・休息の確保、医師の面接指導の対象者の把握。</td></tr>
+    <tr><td class="h">労災</td><td>業務中・通勤中に被災した場合は労災保険の対象となり得る。報告と手続きの流れを決めておく。</td></tr>
+    <tr><td class="h">メンタルケア</td><td>被災した社員、長時間の対応にあたった社員への心のケア。相談窓口の周知。</td></tr>
+    <tr><td class="h">夜間・休日の要員</td><td>配車代行センターなど夜間・休日も稼働する業務の要員確保と、緊急呼び出しのルール・手当。</td></tr>
+    <tr><td class="h">就業規則等への反映</td><td>上記のルールのうち、勤務・賃金・在宅勤務に関するものは、就業規則や関連規程に反映する。</td></tr>
+  </table>
+</section>
+
+<!-- ============ 08 ヒアリング ============ -->
+<section class="page">
+  <div class="chap"><span class="no">08</span><h2>ヒアリング項目</h2></div>
+  <p>STEP2〜3で使用するヒアリング項目です。事前に目を通していただき、わかる範囲でご準備ください。空欄は、ヒアリングの場で一緒に記入します。</p>
+
+  <h3>A　会社・拠点の基本情報</h3>
+  <table class="form">
+    <tr><td class="q">従業員数（正社員・パート等の内訳）</td><td></td></tr>
+    <tr><td class="q">部門の構成（組織図）</td><td></td></tr>
+    <tr><td class="q">24時間・夜間・休日に稼働している部門</td><td></td></tr>
+  </table>
+  <table class="form">
+    <thead><tr><th style="width:17%">拠点</th><th style="width:17%">所在地</th><th style="width:9%">人数</th><th style="width:20%">主な業務</th><th style="width:15%">建物（自社・賃貸、築年）</th><th>ハザード区分（地震・津波・浸水）</th></tr></thead>
+    <tr><td>本社（静岡）</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>配車センター（静岡市）</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>北海道営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>仙台営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>埼玉営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>東京営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>名古屋営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>大阪営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>金沢営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>福岡営業所</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3 class="page">B　サービスの一覧</h3>
+  <table class="form">
+    <thead><tr><th style="width:21%">サービス</th><th style="width:12%">系統</th><th style="width:15%">提供形態</th><th style="width:10%">顧客数</th><th style="width:21%">止まったときの影響</th><th>契約上の約束（SLA等）</th></tr></thead>
+    <tr><td>テレハイ</td><td>配車</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>タクコン（遠隔点呼・点呼番を含む）</td><td>事務処理</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>受注アプリ（ゆびタク等）</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>ドライバーアプリ</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>注文端末・QR（こゆび等）</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>車載機・GPS等の機器</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>配車代行業務</td><td>業務受託</td><td>―</td><td></td><td></td><td></td></tr>
+    <tr><td>その他</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p class="small">※系統欄は「配車（テレハイ系）」「事務処理（タクコン系）」「単独」等で記入。提供形態は「クラウド」「顧客側オンプレミス」「機器」等。</p>
+
+  <h3>C　タクコンの機能ごとの影響</h3>
+  <table class="form">
+    <thead><tr><th style="width:17%">機能</th><th style="width:11%">利用顧客数</th><th style="width:19%">使う時期（締日等）</th><th style="width:21%">止まったときの影響</th><th style="width:14%">許容できる停止時間</th><th>代わりの手段</th></tr></thead>
+    <tr><td>点呼（遠隔点呼・点呼番）</td><td></td><td>毎日（出庫・帰庫時）</td><td></td><td></td><td></td></tr>
+    <tr><td>運行管理</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>売上・日報管理</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>勤怠管理</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>給与計算</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>請求・会計連携</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>その他</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+</section>
+
+<section class="page">
+  <h3>D　顧客</h3>
+  <table class="form">
+    <tr><td class="q">顧客数（タクシー事業者数・対象車両台数）</td><td></td></tr>
+    <tr><td class="q">売上の大きい顧客、特に依存度の高い顧客</td><td></td></tr>
+    <tr><td class="q">顧客の給与の締日・支払日の分布（月の中で集中する時期）</td><td></td></tr>
+    <tr><td class="q">顧客との契約・利用規約で約束している内容（稼働率・復旧時間・障害時の連絡等）</td><td></td></tr>
+    <tr><td class="q">障害時の顧客への連絡手段（メール、電話、お知らせページ等）</td><td></td></tr>
+    <tr><td class="q">顧客側に、システムが止まったときの手順（手動配車等）があるか</td><td></td></tr>
+  </table>
+
+  <h3>E　部門ごとの業務（部門ごとに記入）</h3>
+  <table class="form">
+    <thead><tr><th style="width:24%">業務名</th><th style="width:14%">担当者</th><th style="width:14%">代われる人</th><th style="width:24%">必要なもの（システム・機器・データ等）</th><th>止まったときの影響</th></tr></thead>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3>F　システム・データ</h3>
+  <table class="form">
+    <tr><td class="q">テレハイ・タクコンのサーバの設置場所（本社内・データセンター・クラウド事業者名、地域）</td><td></td></tr>
+    <tr><td class="q">予備系（冗長化）の有無と、切替えの方法・所要時間</td><td></td></tr>
+    <tr><td class="q">バックアップの頻度・保管場所・ネットワークからの切り離しの有無</td><td></td></tr>
+    <tr><td class="q">バックアップから復元した実績・所要時間</td><td></td></tr>
+    <tr><td class="q">障害時の復旧手順書の有無</td><td></td></tr>
+    <tr><td class="q">管理者権限・暗号鍵等の管理方法（知っている人数）</td><td></td></tr>
+    <tr><td class="q">ソースコード・開発環境の保管場所</td><td></td></tr>
+    <tr><td class="q">監視体制（夜間・休日を含む）</td><td></td></tr>
+    <tr><td class="q">情報セキュリティ対策（多要素認証、脆弱性対応、社員教育等）</td><td></td></tr>
+  </table>
+
+  <h3>G　通信・電力・設備</h3>
+  <table class="form">
+    <tr><td class="q">インターネット回線・電話回線の契約先と二重化の有無</td><td></td></tr>
+    <tr><td class="q">配車代行センターの電話受付の仕組み（IP電話等）と代替手段</td><td></td></tr>
+    <tr><td class="q">停電時の備え（UPS・自家発電の有無、稼働時間）</td><td></td></tr>
+    <tr><td class="q">持ち出せるノートPC・モバイル回線の有無</td><td></td></tr>
+  </table>
+
+  <h3>H　外部の委託先・仕入先</h3>
+  <table class="form">
+    <thead><tr><th style="width:22%">区分</th><th style="width:22%">事業者名</th><th style="width:28%">止まったときの影響</th><th>代わりの事業者・手段</th></tr></thead>
+    <tr><td>クラウド・データセンター</td><td></td><td></td><td></td></tr>
+    <tr><td>通信キャリア</td><td></td><td></td><td></td></tr>
+    <tr><td>外部サービス（地図・GPS等）</td><td></td><td></td><td></td></tr>
+    <tr><td>機器メーカー・仕入先</td><td></td><td></td><td></td></tr>
+    <tr><td>開発・保守の委託先</td><td></td><td></td><td></td></tr>
+  </table>
+</section>
+
+<section class="page">
+  <h3>I　社員・労務</h3>
+  <table class="form">
+    <tr><td class="q">現在の安否確認の方法（システム・連絡網の有無）</td><td></td></tr>
+    <tr><td class="q">緊急連絡網の整備状況・更新頻度</td><td></td></tr>
+    <tr><td class="q">在宅勤務の規程・環境の有無、在宅でできる業務</td><td></td></tr>
+    <tr><td class="q">災害時の出勤・帰宅・賃金の取扱いについてのルールの有無</td><td></td></tr>
+    <tr><td class="q">36協定の内容（特別条項の有無）</td><td></td></tr>
+    <tr><td class="q">「この人しかわからない」業務とその担当者</td><td></td></tr>
+    <tr><td class="q">静岡以外の拠点にいる管理職・技術者</td><td></td></tr>
+    <tr><td class="q">備蓄（水・食料・簡易トイレ等）の状況</td><td></td></tr>
+  </table>
+
+  <h3>J　過去の障害・災害の経験</h3>
+  <table class="form">
+    <tr><td class="q">過去の主なシステム障害（時期・原因・停止時間・対応）</td><td></td></tr>
+    <tr><td class="q">過去の災害等による被害（地震・台風・感染症等）</td><td></td></tr>
+    <tr><td class="q">そのとき困ったこと、うまくいったこと</td><td></td></tr>
+  </table>
+
+  <h3>K　既存の取組</h3>
+  <table class="form">
+    <tr><td class="q">防災計画・消防計画の有無</td><td></td></tr>
+    <tr><td class="q">ISMS・プライバシーマーク等の認証の有無</td><td></td></tr>
+    <tr><td class="q">加入している保険（火災・地震・サイバー保険・事業中断等）</td><td></td></tr>
+    <tr><td class="q">取引先からBCPの有無を問われたことがあるか</td><td></td></tr>
+  </table>
+
+  <h3>L　経営者への確認事項</h3>
+  <table class="form">
+    <tr><td class="q">BCPで何を一番守りたいか</td><td></td></tr>
+    <tr><td class="q">テレハイ・タクコンが止まった場合、どのくらいの時間なら許容できるか</td><td></td></tr>
+    <tr><td class="q">最も起きてほしくない事態は何か</td><td></td></tr>
+    <tr><td class="q">対策に投資できる規模（今年度・中期）</td><td></td></tr>
+    <tr><td class="q">社長不在時に判断を任せられる人（静岡以外を含む）</td><td></td></tr>
+    <tr><td class="q">事業継続力強化計画の認定取得を検討するか</td><td></td></tr>
+  </table>
+</section>
+
+<!-- ============ 09 付録 ============ -->
+<section class="page">
+  <div class="chap"><span class="no">09</span><h2>付録</h2></div>
+
+  <h3>付録1　BCP本体の目次案</h3>
+  <div class="g2">
+    <div class="box pale" style="margin:0">
+      <div class="bt">経営版（社外秘）</div>
+      <ol style="margin-bottom:0">
+        <li>基本方針</li>
+        <li>対象範囲と前提</li>
+        <li>体制（対策本部・代行順位）</li>
+        <li>発動基準</li>
+        <li>優先順位と目標時間一覧</li>
+        <li>BCP中核表（事象ごと）</li>
+        <li>初動のタイムライン</li>
+        <li>顧客への連絡手順とひな形</li>
+        <li>対策計画・投資計画</li>
+        <li>システム構成図・委託先一覧</li>
+        <li>連絡先一覧（社内・顧客・委託先・関係機関）</li>
+        <li>訓練・見直し計画</li>
+      </ol>
+    </div>
+    <div class="box pale" style="margin:0">
+      <div class="bt">全社版（全社員に周知）</div>
+      <ol style="margin-bottom:0">
+        <li>基本方針</li>
+        <li>BCPを発動するとき</li>
+        <li>発生直後にすること（身の安全）</li>
+        <li>安否の報告方法</li>
+        <li>出勤・待機・帰宅の判断</li>
+        <li>在宅勤務への切替え</li>
+        <li>自分の役割（チーム別）</li>
+        <li>災害時の勤務と賃金の取扱い</li>
+        <li>連絡網</li>
+        <li>家族との安否確認・日頃の備え</li>
+      </ol>
+      <p class="small" style="margin-top:6px">＋ 携帯カード（初動・安否報告・連絡先の1枚）</p>
+    </div>
+  </div>
+
+  <h3>付録2　策定完了チェックリスト</h3>
+  <ul class="chk">
+    <li>基本方針が決まり、経営者の言葉で社員に伝えられている</li>
+    <li>テレハイ・タクコン（機能ごと）・配車代行センターの優先順位と目標時間が決まっている</li>
+    <li>目標時間が顧客との契約上の約束と食い違っていない</li>
+    <li>主な事象ごとに、予防・代替・復旧・時間・チームが中核表にまとまっている</li>
+    <li>発動基準が数値や客観的な事実で決まっている</li>
+    <li>本部長・各チームリーダーの代行者が決まっており、静岡以外の人が含まれている</li>
+    <li>夜間・休日に発生したときの連絡と判断の流れが決まっている</li>
+    <li>顧客が使う代替手段（紙の点呼記録簿・手動配車等）の様式と手順が顧客と共有されている</li>
+    <li>バックアップの復元テストを実施し、目標時間内に戻せることを確認した</li>
+    <li>安否確認訓練と机上訓練を実施し、改善点を反映した</li>
+    <li>災害時の勤務・賃金の取扱いが決まり、社員に伝えている</li>
+    <li>BCP文書を紙・オフラインでも保管している</li>
+    <li>見直しの時期と担当者が決まっている</li>
+  </ul>
+
+  <h3>付録3　用語集</h3>
+  <table>
+    <tr><td class="h" style="width:28%">BCP（事業継続計画）</td><td>緊急時に中核の事業を継続・早期復旧するための計画</td></tr>
+    <tr><td class="h">BCM（事業継続マネジメント）</td><td>BCPの策定だけでなく、訓練・見直しを含めた継続的な取組み全体</td></tr>
+    <tr><td class="h">BIA（事業影響度分析）</td><td>業務が止まったときの影響を分析し、優先順位と目標時間を決める作業（STEP3）</td></tr>
+    <tr><td class="h">RTO（目標復旧時間）</td><td>止まってから何時間以内に戻すかの目標</td></tr>
+    <tr><td class="h">RPO（目標復旧時点）</td><td>データをどの時点まで戻せればよいかの目標</td></tr>
+    <tr><td class="h">冗長化</td><td>予備の設備・回線を用意し、1つが止まっても動き続けるようにすること</td></tr>
+    <tr><td class="h">SLA</td><td>サービスの品質（稼働率・復旧時間等）について顧客と約束した内容</td></tr>
+    <tr><td class="h">ランサムウェア</td><td>データを暗号化して使えなくし、解除と引換えに金銭を要求する攻撃</td></tr>
+  </table>
+
+  <h3>付録4　参考になる公的ガイド</h3>
+  <ul>
+    <li>中小企業庁「中小企業BCP策定運用指針」</li>
+    <li>内閣府「事業継続ガイドライン」</li>
+    <li>経済産業省「ITサービス継続ガイドライン」</li>
+    <li>中小企業庁「事業継続力強化計画」認定制度</li>
+  </ul>
+
+  <div class="endnote">
+    本資料は、BCP策定プロジェクトの進め方を示すたたき台です。記入例に示した対策・目標時間・体制は考え方の例であり、実際の内容は貴社の実情に合わせて検討・決定してください。法令・制度の内容は2026年9月時点の情報に基づいています。<br>
+    <strong style="color:var(--navy)">土橋社労士事務所</strong>
+  </div>
+</section>
+
+</body>
+</html>
